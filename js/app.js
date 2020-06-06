@@ -83,11 +83,11 @@ function smoothScroll(target, duration){
 
     function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
-        var tiimeElapsed = currentTime - startTime;
-        var run = ease(tiimeElapsed, startPosition, distance, duration);
+        var timeElapsed = currentTime - startTime;
+        var run = ease(timeElapsed, startPosition, targetPosition, duration);
         // The First parameter is X - scroll horisontally, we don't use 
-        window.scrollTo(0,run);
-        if(tiimeElapsed < duration) requestAnimationFrame (animation);
+        window.scrollTo(0, run);
+        if(timeElapsed < duration) requestAnimationFrame (animation);
     }
 
 // Function makes the scroll more interesting. Materials from https://www.gizma.com/easing/
@@ -107,9 +107,20 @@ function smoothScroll(target, duration){
 // smoothScroll('#section2', 1000)
 
 //Add event Listener
-/*var section1 = document.querySelector ('#section1');
-section1.addEventListener('click', function() {
+var section1 = document.querySelector ('#nav_section1');
+section1.addEventListener('click', (event) => {
+    event.preventDefault();
+    smoothScroll('#section1', 2000);
+});
+
+var section2 = document.querySelector ('#nav_section2');
+section2.addEventListener('click', (event) => {
+    event.preventDefault();
     smoothScroll('#section2', 2000);
-}
+});
 
-
+var section3 = document.querySelector ('#nav_section3');
+section3.addEventListener('click', (event) => {
+    event.preventDefault();
+    smoothScroll('#section3', 2000);
+});
