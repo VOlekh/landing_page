@@ -107,7 +107,7 @@ function smoothScroll(target, duration){
 // smoothScroll('#section2', 1000)
 
 //Add event Listener
-var section1 = document.querySelector ('#section1');
+/*var section1 = document.querySelector ('#section1');
 section1.addEventListener('click', function() {
     smoothScroll('#section2', 2000);
 }
