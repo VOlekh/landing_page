@@ -85,7 +85,7 @@ function smoothScroll(target, duration){
         if (startTime === null) startTime = currentTime;
         var timeElapsed = currentTime - startTime;
         var run = ease(timeElapsed, startPosition, targetPosition, duration);
-        // The First parameter is X - scroll horisontally, we don't use 
+        // The First parameter is X - scroll horisontally, don't use 
         window.scrollTo(0, run);
         if(timeElapsed < duration) requestAnimationFrame (animation);
     }
@@ -106,7 +106,7 @@ function smoothScroll(target, duration){
 // Use  function call to test code   
 // smoothScroll('#section2', 1000)
 
-//Add event Listener
+//Add event Listener REFACTOR LATER
 var section1 = document.querySelector ('#nav_section1');
 section1.addEventListener('click', (event) => {
     event.preventDefault();
@@ -124,3 +124,18 @@ section3.addEventListener('click', (event) => {
     event.preventDefault();
     smoothScroll('#section3', 2000);
 });
+
+//Highlight section in viewport upon scrolling.
+// Checking if element is in the viewport
+document.addEventListener('scroll', function(){
+   let element = document.getElementById('section1');
+   let domRect = element.getBoundingClientRect();
+   //console.log(top, rect);
+   //console.log(window, innerHeight);
+   if (domRect.top < window.innerHeight && rect.bottom >0 ){
+       console.log("element is in viewport")
+   }
+   else{
+    console.log("element is NOT in viewport")
+   }
+})
