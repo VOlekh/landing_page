@@ -127,23 +127,27 @@ section3.addEventListener('click', (event) => {
 
 //Highlight section in viewport upon scrolling.
 // Check if element is in the viewport
+
+
+
 document.addEventListener('scroll', function(){
-   let element = document.getElementById('section2');
-   let domRect = element.getBoundingClientRect();
-   //console.log(top, rect);
-   //console.log(window, innerHeight);
-   if (domRect.top < window.innerHeight && domRect.bottom > 0 ){
-       //console.log("element is in viewport")
-       // Add class 'active' to section when near top of viewport
-       element.classList.add('your-active-class');
 
-   
-    }    
-   else{
-        //console.log("element is NOT in viewport")
-        // Remove class 'active' from section when OUT of viewport
-        element.classList.remove('your-active-class');
-       
+    const allSections = Array.from(document.querySelectorAll('section'));
+    console.log(allSections);
+    allSections.forEach(function(section, index){
+        let domRect = section.getBoundingClientRect(); 
+        //console.log(window, innerHeight);
+        if (domRect.top < window.innerHeight-150 && domRect.bottom > 150 ){
+            //console.log("element is in viewport")
+            //console.log(index); - check which element is in viewport now
+            // Add class 'active' to section when near top of viewport
+            section.classList.add('your-active-class');     
+        }    
+        else{
+            //console.log("element is NOT in viewport")
+            // Remove class 'active' from section when OUT of viewport
+            section.classList.remove('your-active-class');
+        }
+    });
 
-   }
-})
+});
