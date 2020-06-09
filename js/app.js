@@ -133,20 +133,31 @@ section3.addEventListener('click', (event) => {
 document.addEventListener('scroll', function(){
 
     const allSections = Array.from(document.querySelectorAll('section'));
-    console.log(allSections);
+
     allSections.forEach(function(section, index){
         let domRect = section.getBoundingClientRect(); 
         //console.log(window, innerHeight);
         if (domRect.top < window.innerHeight-150 && domRect.bottom > 150 ){
             //console.log("element is in viewport")
             //console.log(index); - check which element is in viewport now
+            
             // Add class 'active' to section when near top of viewport
-            section.classList.add('your-active-class');     
-        }    
+            section.classList.add('your-active-class');
+
+            ////Highlight navigation menu link whan section in viewport upon scrolling.
+            let activeLink = document.getElementById(`nav_section${index + 1}`);
+            activeLink.classList.add('your-active-link');                    
+        }
+
         else{
             //console.log("element is NOT in viewport")
+
             // Remove class 'active' from section when OUT of viewport
             section.classList.remove('your-active-class');
+
+            ////Remove highlight navigation menu link whan section is OUT of viewport upon scrolling.
+            let activeLink = document.getElementById(`nav_section${index + 1}`);
+            activeLink.classList.remove('your-active-link'); 
         }
     });
 
