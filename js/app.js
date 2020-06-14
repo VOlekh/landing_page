@@ -91,7 +91,7 @@ allSections.forEach(function (section, index) {
     // Add class 'active' to section when near top of viewport
     section.classList.add("your-active-class");
 
-    //Highlight navigation menu link whan section in viewport upon scrolling.
+    // Highlight navigation menu link whan section in viewport upon scrolling.
     let activeLink = document.getElementById(`nav_section${index + 1}`);
     activeLink.classList.add("your-active-link");
   } else {
