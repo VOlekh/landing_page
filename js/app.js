@@ -13,74 +13,30 @@
  *
  */
 
-/**
- * Define Global Variables
- *
- */
-
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
-// build the nav
-
-//https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp
-/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
-/*var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementsByClassName("page__header").style.top = "0";
-  }
-  else {
-    document.getElementsByClassName("page__header").style.top = "-50px";
-  }
-  prevScrollpos = currentScrollPos;
-}*/
-
-// Add class 'active' to section when near top of viewport
-
-// Scroll to anchor ID using scrollTO event
-
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
-
-const allSections = Array.from(document.querySelectorAll('section'));
+// Build navigation menu
+const allSections = Array.from(document.querySelectorAll("section"));
 const menu = document.getElementById("navbar__list");
 
-
 allSections.forEach((section, index) => {
+  const newLi = document.createElement("li");
+  const newA = document.createElement("a");
+  const linkHref = `#section${index + 1}`;
 
-const newLi = document.createElement("li");
-const newA = document.createElement("a");
-const linkHref = `#section${index + 1}`;
+  newA.setAttribute(`href`, linkHref);
+  newA.innerHTML = `Link ${index + 1}`;
 
-newA.setAttribute(`href`, linkHref);
-newA.innerHTML = `Link ${index + 1}`;
+  newA.classList = "menu__link";
+  newA.id = `nav_section${index + 1}`;
 
-newLi.classList = "menu__link";
-newLi.id = `nav_section${index + 1}`;
+  menu.appendChild(newLi);
+  newLi.appendChild(newA);
 
-newLi.appendChild(newA);
-menu.appendChild(newLi);
-
-
-
-})
+// Add event Listener for smoothScroll
+  newA.addEventListener("click", (event) => {
+    event.preventDefault();
+    smoothScroll(linkHref, 2000);
+});
+});
 
 // Smooth scroll to section on link click
 // Materials from https://www.youtube.com/watch?v=oUSvlrDTLi4
@@ -117,56 +73,38 @@ function smoothScroll(target, duration) {
 // Use function call to test code
 // smoothScroll('#section2', 1000)
 
-// Add event Listener REFACTOR LATER
-var section1 = document.querySelector("#nav_section1");
-section1.addEventListener("click", (event) => {
-  event.preventDefault();
-  smoothScroll("#section1", 2000);
-});
-
-var section2 = document.querySelector("#nav_section2");
-section2.addEventListener("click", (event) => {
-  event.preventDefault();
-  smoothScroll("#section2", 2000);
-});
-
-var section3 = document.querySelector("#nav_section3");
-section3.addEventListener("click", (event) => {
-  event.preventDefault();
-  smoothScroll("#section3", 2000);
-});
 
 // Highlight section in viewport upon scrolling.
 // Check if element is in the viewport
+
 // Set sections as active
-
 document.addEventListener("scroll", function () {
-  const allSections = Array.from(document.querySelectorAll("section"));
+const allSections = Array.from(document.querySelectorAll("section"));
 
-  allSections.forEach(function (section, index) {
-    let domRect = section.getBoundingClientRect();
-    //console.log(window, innerHeight);
-    if (domRect.top < window.innerHeight - 150 && domRect.bottom > 150) {
-      //console.log("element is in viewport")
-      //console.log(index); - check which element is in viewport now
+allSections.forEach(function (section, index) {
+  let domRect = section.getBoundingClientRect();
+  //console.log(window, innerHeight);
+  if (domRect.top < window.innerHeight - 150 && domRect.bottom > 150) {
+    //console.log("element is in viewport")
+    //console.log(index); - check which element is in viewport now
 
-      // Add class 'active' to section when near top of viewport
-      section.classList.add("your-active-class");
+    // Add class 'active' to section when near top of viewport
+    section.classList.add("your-active-class");
 
-      //Highlight navigation menu link whan section in viewport upon scrolling.
-      let activeLink = document.getElementById(`nav_section${index + 1}`);
-      activeLink.classList.add("your-active-link");
-    } else {
-      //console.log("element is NOT in viewport")
+    //Highlight navigation menu link whan section in viewport upon scrolling.
+    let activeLink = document.getElementById(`nav_section${index + 1}`);
+    activeLink.classList.add("your-active-link");
+  } else {
+    //console.log("element is NOT in viewport")
 
-      // Remove class 'active' from section when OUT of viewport
-      section.classList.remove("your-active-class");
+    // Remove class 'active' from section when OUT of viewport
+    section.classList.remove("your-active-class");
 
-      // Remove highlight navigation menu link whan section is OUT of viewport upon scrolling.
-      let activeLink = document.getElementById(`nav_section${index + 1}`);
-      activeLink.classList.remove("your-active-link");
-    }
-  });
+    // Remove highlight navigation menu link whan section is OUT of viewport upon scrolling.
+    let activeLink = document.getElementById(`nav_section${index + 1}`);
+    activeLink.classList.remove("your-active-link");
+  }
+});
 });
 
 // Materials from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
@@ -191,4 +129,4 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+};
