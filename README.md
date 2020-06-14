@@ -22,7 +22,7 @@ The biggest part of work is done in file `js/app.js`.
 ## Project Description
 
  
-This project is a smulti-section landing page witha a possibility to dynamically add the content to the page, demonstrating this with the navigation menu. Additionally, dynamically building the navigation, which is a a great  precursor to understanding the virtual DOM, working with JavaScript frameworks.
+This project is a multi-section landing page witha a possibility to dynamically add the content to the page, demonstrating this with the navigation menu. Additionally, dynamically building the navigation, which is a a great  precursor to understanding the virtual DOM, working with JavaScript frameworks.
 
 - The project has at least 4 content sections.
 - In the project dynamically created a navigation menu based on the sections of the page.
